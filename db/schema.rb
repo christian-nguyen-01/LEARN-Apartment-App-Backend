@@ -10,21 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_175339) do
+ActiveRecord::Schema.define(version: 2018_09_21_225044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "listings", force: :cascade do |t|
-    t.string "streetAddress", default: "", null: false
-    t.string "city", default: "", null: false
-    t.string "postalCode", default: "", null: false
-    t.string "state", default: "", null: false
-    t.string "country", default: "", null: false
-    t.string "buildingManager.name", null: false
-    t.string "buildingManager.phoneNumber", null: false
-    t.string "buildingManager.contactHours", null: false
-
+  create_table "apartments", force: :cascade do |t|
+    t.string "street"
+    t.string "city"
+    t.string "postalCode"
+    t.string "state"
+    t.string "country"
+    t.string "managerName"
+    t.string "managerNumber"
+    t.string "contactHours"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_apartments_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "jti"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["jti"], name: "index_users_on_jti", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "apartments", "users"
 end

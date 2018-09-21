@@ -5,33 +5,35 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-listing_attributes = [
+
+apartment_attributes = [
   {
-    streetAddress:"3465 Nere Dr.",
+    street:"3465 Nere Dr.",
     city:"New York",
-    postalCode:"12345",
+    postalCode:12345,
     state:"NY",
     country:"USA",
-    buildingManager:{
-      name:"Kristaps Porzingis",
-      phoneNumber:"123-456-6654",
-      contactHours:"Never"
-    }
+    managerName:"Kristaps Porzingis",
+    managerNumber:1234566654,
+    contactHours:"Never",
+    owner:"Kristaps Porzingis"
+
   },
   {
-    streetAddress:"12654 Tired Blvd.",
+    street:"12654 Tired Blvd.",
     city:"Sleepy Town",
-    postalCode:"12121",
+    postalCode:12121,
     state:"CC",
     country:"Morphia",
-    buildingManager:{
-      name:"Christian Slumber",
-      phoneNumber:"111-222-7zzz",
-      contactHours:"11:00 - 11:01 AM"
+    managerName:"Christian Slumber",
+    managerNumber:1232226654,
+    contactHours:"11:00 - 11:01 AM",
+    owner:"Theta"
+
     }
   }
 ]
 
-listing_attributes.each do |attributes|
-  Listing.create(attributes)
+apartment_attributes.each do |attributes|
+  Apartment.create(attributes)
 end
